@@ -125,7 +125,7 @@ Example of test store class:
 This class is saved (encrypted) and loaded (decrypted) to/from cloud as `NSData`.
 
 ######Cloud files
-File are stored in your Cloud directory, that is accessibile from web, at url  <http://developers.icloud.com> or in your Mac local folder, `~/Library/Mobile Documents/`.
+File are stored in your Cloud directory, that is accessibile from web, at url  <http://developer.icloud.com> or in your Mac local folder, `~/Library/Mobile Documents/`.
 	
 Files are stored using this tree:
 
