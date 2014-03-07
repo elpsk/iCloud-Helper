@@ -139,7 +139,7 @@
 	[self presentViewController:vc animated:YES completion:nil];
 }
 
-- (void)apCloudCoreDidFinishDeleteFile
+- (void)apCloudCoreDidFinishDeleteData:(id)data
 {
   alertme(@"File deleted successfully!");
 }
