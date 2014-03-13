@@ -6,10 +6,6 @@
 
 #import <Foundation/Foundation.h>
 
-#if !__has_feature(objc_arc)
-#error APCloud use ARC. Please change your settings.
-#endif
-
 #if !__has_feature(objc_instancetype)
 #undef instancetype
 #define instancetype id

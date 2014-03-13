@@ -41,7 +41,13 @@ static const NSString *kSALTKey = @"albert0pasca";
   NSData *salt = [kSALTKey dataUsingEncoding:NSUTF8StringEncoding];
   [_storeData appendData:salt]; // adding SALT to data
   
-  return [NSMutableData dataWithBytes:[_storeData bytes] length:[_storeData length]];
+  id retData = [NSMutableData dataWithBytes:[_storeData bytes] length:[_storeData length]];
+  
+#if !__has_feature(objc_arc)
+  [_storeData release];
+#endif
+  
+  return retData;
 }
 
 

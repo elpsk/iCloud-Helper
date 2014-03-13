@@ -41,6 +41,14 @@ static NSString *kDEFAULT_PREFIX = @"ap";
   return self;
 }
 
+- (void) dealloc
+{
+  #if !__has_feature(objc_arc)
+  [super dealloc];
+  [_cloudFiles release];
+  #endif
+}
+
 
 // +---------------------------------------------------------------------------+
 
@@ -144,6 +152,10 @@ static NSString *kDEFAULT_PREFIX = @"ap";
                                                   name:NSMetadataQueryDidFinishGatheringNotification
                                                 object:query];
 
+#if !__has_feature(objc_arc)
+  [_query release];
+#endif
+  
   _query = nil;
 }
 
@@ -181,6 +193,10 @@ static NSString *kDEFAULT_PREFIX = @"ap";
          }
        }
        else [_delegate apCloudCoreDidFailLoadData:doc];
+       
+#if !__has_feature(objc_arc)
+       [doc release];
+#endif
      }];
    }];
 }
@@ -247,6 +263,10 @@ static NSString *kDEFAULT_PREFIX = @"ap";
     }
 
     [_query enableUpdates];
+    
+#if !__has_feature(objc_arc)
+    [_query release];
+#endif
   });
 }
 

@@ -9,7 +9,7 @@
 #import "APAppDelegate.h"
 
 #if TARGET_IPHONE_SIMULATOR
-#error "iCloud don't work on iOS Simulator."
+#warning "iCloud don't work on iOS Simulator."
 #endif
 
 @interface APAppDelegate ()

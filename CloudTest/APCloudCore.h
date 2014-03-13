@@ -7,17 +7,13 @@
 #import <Foundation/Foundation.h>
 #import "APCloudDocument.h"
 
-#if !__has_feature(objc_arc)
-#error APCloud require ARC. Please change your settings.
-#endif
-
 #if !__has_feature(objc_instancetype)
 #undef instancetype
 #define instancetype id
 #endif
 
 #if TARGET_IPHONE_SIMULATOR
-#error "iCloud don't work on iOS Simulator."
+#warning "iCloud don't work on iOS Simulator."
 #endif
 
 
@@ -91,7 +87,11 @@ NS_CLASS_AVAILABLE_IOS(5_1) @interface APCloudCore : NSObject
 /**
  *  APCloudCore delegate
  */
+#if !__has_feature(objc_arc)
+@property (nonatomic, assign) id<APCloudCoreDelegate> delegate;
+#else
 @property (nonatomic, weak) id<APCloudCoreDelegate> delegate;
+#endif
 
 /**
  *  Singleton access

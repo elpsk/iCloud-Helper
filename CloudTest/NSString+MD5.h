@@ -6,9 +6,6 @@
 
 #import <Foundation/Foundation.h>
 
-#if !__has_feature(objc_arc)
-#error APCloud use ARC. Please change your settings.
-#endif
 
 #if !__has_include(<CommonCrypto/CommonDigest.h>)
 #error @"APCloud classes need CommonCrypto framework to work!"

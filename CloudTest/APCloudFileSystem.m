@@ -130,6 +130,10 @@ NSString *const APCloudCoreFileFail    = @"APCloudCoreFileFail";
          [_delegate apCloudFileSystemDidFailSaveData:cData];
        }
      }
+     
+#if !__has_feature(objc_arc)
+     [doc release];
+#endif
    }];
 }
 
@@ -139,7 +143,11 @@ NSString *const APCloudCoreFileFail    = @"APCloudCoreFileFail";
 
 - (APCloudDocument*) loadDocumentWithName:(NSString*) pName prefix:(NSString*)prefix
 {
+#if !__has_feature(objc_arc)
+  return [[[APCloudDocument alloc] initWithFileURL:[self getCloudFileUrl:pName prefix:prefix]] autorelease];
+#else
   return [[APCloudDocument alloc] initWithFileURL:[self getCloudFileUrl:pName prefix:prefix]];
+#endif
 }
 
 
@@ -148,8 +156,12 @@ NSString *const APCloudCoreFileFail    = @"APCloudCoreFileFail";
 
 - (void) deleteFileWithName:(NSString *)fname prefix:(NSString*)prefix
 {
-  NSURL *fUrl                = [self getCloudFileUrl:fname prefix:prefix];
-  NSFileManager* fileManager = [[NSFileManager alloc] init];
+  NSURL *fUrl = [self getCloudFileUrl:fname prefix:prefix];
+
+  NSFileManager *fileManager = [[NSFileManager alloc] init];
+#if !__has_feature(objc_arc)
+  [fileManager autorelease];
+#endif
 
   if ( ![fileManager fileExistsAtPath:[fUrl relativePath]] )
   {
@@ -169,6 +181,11 @@ NSString *const APCloudCoreFileFail    = @"APCloudCoreFileFail";
      if ( _delegate && [_delegate respondsToSelector:@selector(apCloudFileSystemDidFinishDeleteData:)] ) {
        [_delegate apCloudFileSystemDidFinishDeleteData:fname];
      }
+     
+#if !__has_feature(objc_arc)
+     [fileManager release];
+     [fileCoordinator release];
+#endif
    }];
 
   if ( error )

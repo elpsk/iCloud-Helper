@@ -81,6 +81,10 @@
 
   [[APCloudCore sharedCloud] setFilePrefix:_txtPrefix.text];
   [[APCloudCore sharedCloud] saveData:testStore withName:_txtFileName.text];
+  
+#if !__has_feature(objc_arc)
+  [testStore release];
+#endif
 }
 
 - (IBAction) deleteFile:(id)sender

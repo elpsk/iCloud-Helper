@@ -90,8 +90,13 @@
 {
   static NSString *CellIdentifier = @"Cell";
   APTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (!cell) {
+  if (!cell)
+  {
+#if !__has_feature(objc_arc)
+    cell = [[[APTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+#else
     cell = [[APTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+#endif
   }
 
   cell.model = [_tableArray objectAtIndex:indexPath.row];

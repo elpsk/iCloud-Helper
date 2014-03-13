@@ -6,10 +6,6 @@
 
 #import <UIKit/UIKit.h>
 
-#if !__has_feature(objc_arc)
-#error APCloud use ARC. Please change your settings.
-#endif
-
 /**
  *  Subcass of UIDocument, to store/read data in cloud
  */
