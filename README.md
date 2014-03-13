@@ -13,7 +13,7 @@ Before starting, please read **Apple official reference**:
 - A valid Provisioning Profile ( with iCloud access )
 - An iCloud account
 - iOS 5.1+
-- ARC
+- ARC / Non ARC
 - iOS device
 - Security.framework
 
