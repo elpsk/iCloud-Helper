@@ -287,6 +287,13 @@ static NSString *kDEFAULT_PREFIX = @"ap";
 
 - (void) saveData:(id)cData withName:(NSString*)fName
 {
+  if ( ![self isCloudEnabled] ) {
+    if ( _delegate && [_delegate respondsToSelector:@selector(apCloudNotEnabled)] ) {
+      [_delegate apCloudNotEnabled];
+      return;
+    }
+  }
+
   [self saveData:cData withName:fName prefix:_filePrefix];
 }
 

@@ -68,6 +68,10 @@
  *  Called on fail file delete
  */
 - (void) apCloudCoreDidFailDeleteData:(id)data;
+/**
+ *  Called on iCloud not enabled
+ */
+- (void) apCloudNotEnabled;
 
 @end
 
