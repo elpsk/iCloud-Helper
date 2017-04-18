@@ -8,7 +8,7 @@ Before starting, please read **Apple official reference**:
 <https://developer.apple.com/icloud/documentation/>
 
 
-##Requirements
+## Requirements
 
 - A valid Provisioning Profile ( with iCloud access )
 - An iCloud account
@@ -19,7 +19,7 @@ Before starting, please read **Apple official reference**:
 
 ---
 
-##Configuration
+## Configuration
 
 Copy these files to your project:
 
@@ -38,7 +38,7 @@ and import `Security.framework` to your project.
 
 ---
 
-###Screenshots
+### Screenshots
 
 
 ![SS Screenshot](a.png "SS")
@@ -46,7 +46,7 @@ and import `Security.framework` to your project.
 ![SS Screenshot](c.png "SS")
 
 
-##How to use
+## How to use
 
 Import `#import "APCloudCore.h"` in your project.
 
@@ -60,30 +60,30 @@ Every classes provides a singleton access.
 
 ---
 
-####Methods:
-######Check for cloud enabled
+#### Methods:
+###### Check for cloud enabled
 
 	[[APCloudCore sharedCloud] isCloudEnabled];
 	
-######Save a file
+###### Save a file
 
 	[[APCloudCore sharedCloud] saveData:yourData withName:yourFileName];
 
-######Load a file
+###### Load a file
 
 	[[APCloudCore sharedCloud] loadDataWithName:yourFileName];
 
-######Delete a file
+###### Delete a file
 
 	[[APCloudCore sharedCloud] deleteFileWithName:yourFileName];
 
-######Load all cloud files
+###### Load all cloud files
 
 	[[APCloudCore sharedCloud] loadAllFilesWithPrefix:yourPrefix];
 
 ---
 
-###APCloudCoreDelegate
+### APCloudCoreDelegate
 
 If you're implemented the `optionals` delegate, you should implements the delegates (*finish* and *fail*):
 
@@ -104,7 +104,7 @@ If you're implemented the `optionals` delegate, you should implements the delega
 
 ---
 
-###Notes on SAVE
+### Notes on SAVE
 Save method, accept an `id` as file. This id is your custom class, that **must** implements `NSCoding` protocol.  
 
 Example of test store class:
@@ -124,7 +124,7 @@ Example of test store class:
 
 This class is saved (encrypted) and loaded (decrypted) to/from cloud as `NSData`.
 
-######Cloud files
+###### Cloud files
 File are stored in your Cloud directory, that is accessibile from web, at url  <http://developer.icloud.com> or in your Mac local folder, `~/Library/Mobile Documents/`.
 	
 Files are stored using this tree:
